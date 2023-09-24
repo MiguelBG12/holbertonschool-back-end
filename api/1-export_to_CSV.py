@@ -5,7 +5,7 @@ import requests
 import sys
 
 if __name__ == "__main__":
-    # Define the base URL for the REST API
+    #Define the base URL for the REST API
     url = "https://jsonplaceholder.typicode.com"
 
     # Fetch user data and todos for a specific user ID from the API
