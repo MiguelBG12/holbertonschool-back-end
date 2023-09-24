@@ -7,7 +7,7 @@ if __name__ == "__main__":
     # Define the base URL for the REST API
     url = "https://jsonplaceholder.typicode.com"
 
-    #Fetch a list of users from the API
+    # Fetch a list of users from the API
     users = requests.get(url + "/users").json()
 
     # Create an empty dictionary to store todos for all users
