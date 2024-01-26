@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """ This module defines the REST API """
-# Import the request library to make HTTP requests.
 import requests
-# Import the sys module to access command line arguments.
 import sys
 
 
