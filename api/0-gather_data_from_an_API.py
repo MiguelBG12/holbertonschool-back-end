@@ -19,14 +19,12 @@ if __name__ == "__main__":
 
     # Calculate the total number of tasks obtained.
     total_tasks = len(todos)
-
-    # Calculate the total number of tasks and the number of completed tasks.
     completed_tasks = sum(1 for todo in todos if todo["completed"])
 
     # Print a message indicating the user's name and the number of completed
     # tasks out of the total.
     print("Employee {} is done with tasks({}/{}):".format(
-        user.get("name"), completed_tasks, total_tasks))
+            user.get("name"), completed_tasks, total_tasks))
 
     # Prints titles with indentation using list comprehension.
     [print(f"\t {todo['title']}") for todo in todos if todo["completed"]]
