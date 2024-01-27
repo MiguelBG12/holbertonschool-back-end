@@ -1,30 +1,23 @@
 #!/usr/bin/python3
-""" This module defines the REST API """
+"""Python script that using REST API"""
 import requests
 import sys
 
-
-# Checks if the script is running directly and not being imported as a module.
 if __name__ == "__main__":
-    # Defines the base URL for the JSONPlaceholder API.
-    url = "https://jsonplaceholder.typicode.com"
+    user_id = sys.argv[1]
+    todo_url = f"https://jsonplaceholder.typicode.com/todos?userId={user_id}"
+    user_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
 
-    # Makes a GET request to the API to obtain information about a specific
-    # user, using the first command line argument as the user ID.
-    user = requests.get(url + "/users/{}".format(sys.argv[1])).json()
+    response1 = requests.get(todo_url).json()
+    response2 = requests.get(user_url).json()
 
-    # Makes a GET request to the API to get the list of tasks, using the first
-    # command line argument as the user ID and passing it as a parameter.
-    todos = requests.get(url + "/todos", params={"userId": sys.argv[1]}).json()
+    number_tasks_done = sum(1 for task in response1 if task["completed"])
+    total_tasks = len(response1)
 
-    # Calculate the total number of tasks obtained.
-    total_tasks = len(todos)
-    completed_tasks = sum(1 for todo in todos if todo["completed"])
+    employee_name = response2.get("name")
+    task_titles = [task["title"] for task in response1 if task["completed"]]
 
-    # Print a message indicating the user's name and the number of completed
-    # tasks out of the total.
     print("Employee {} is done with tasks({}/{}):".format(
-            user.get("name"), completed_tasks, total_tasks))
-
-    # Prints titles with indentation using list comprehension.
-    [print(f"\t {todo['title']}") for todo in todos if todo["completed"]]
+          employee_name, number_tasks_done, total_tasks))
+    for title in task_titles:
+        print(f"\t {title}")
